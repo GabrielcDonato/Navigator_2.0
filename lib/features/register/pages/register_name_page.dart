@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 class RegisterNamePage extends StatelessWidget {
-//method static
-  static Page page({
-    required String name,
-    required Function(String) changeName,
-    required VoidCallback onContinue,
-  }) {
+  static Page page(
+      {required String name,
+      required Function(String) changeName,
+      required VoidCallback onContinue}) {
     return MaterialPage(
+      maintainState: true,
       child: RegisterNamePage(
         name: name,
-        onContinue: onContinue,
         changeName: changeName,
+        onContinue: onContinue,
       ),
     );
   }
@@ -25,23 +24,22 @@ class RegisterNamePage extends StatelessWidget {
   final String name;
   final Function(String) changeName;
   final VoidCallback onContinue;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Name"),
+        title: Text('name'),
       ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 32),
-          child: TextField(),
+          child: TextField(
+            onChanged: changeName,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.chevron_right,
-        ),
+        child: Icon(Icons.chevron_right),
         onPressed: onContinue,
       ),
     );
